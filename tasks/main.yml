@@ -9,6 +9,13 @@
     - make
     - unzip
 
+- name: Install bzip2
+  when: ansible_facts['distribution_major_version'] | int <= 16
+  become: true
+  apt:
+    name:
+    - bzip2
+
 - name: Get libxc source
   get_url:
     url: "{{ libxc_url }}"
